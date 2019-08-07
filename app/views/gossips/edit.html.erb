@@ -8,7 +8,10 @@
 
 
 
+
+
 	<!-------------------------- NAV BAR -------------------------->
+
 
 
 
@@ -37,24 +40,26 @@
 
 
 
-
-
-
-	<!-------------------------- SUCCESS MESSAGE -------------------------->
+	<!-------------------------- ERROR MESSAGE -------------------------->
 
 
 
  
-		<% if flash[:success] %>
-			<div class="alert alert-success" role="alert">
-	 			<p>Votre gossip a bien été modifié ! </p>
-
+		<% if @gossip.errors.any? %>
+			<div class="alert alert-danger" role="alert">
+	 			<p>Nous n'avons pas réussi à modifier le potin pour la (ou les) raison(s) suivante(s) :</p>
+			
+		  
+		  		<ul>
+		    		<% @gossip.errors.full_messages.each do |message| %>
+		     	 	<li><%= message %></li>
+		    		<% end %>
+		  		</ul>
 		  	</div>
 		<% end %> 
 
 
 
-  
     <!-------------------------- CONTAINER -------------------------->
 
     <div class="container text-center">
@@ -62,28 +67,29 @@
 	    </br>
 	    </br>
 	    </br>
-	    <h1>Voici la page du Gossip n°<%= @id%> </h1>
+	    <h1>ÉDITER LE GOSSIP : <%= "#{@gossip.title}" %></h1>
 	    </br>
 	    </br>
 
-		<div class="card">
-			<div class="card-body">
-		  		<h3 class="card-title"><%= @gossip.title %></h3>
-		  		<p class="card-text"><%= @gossip.content %></p>
-		  		<blockquote class="blockquote mb-0">
-		  			 <footer class="blockquote-footer text-right">
-		  			 	<%= link_to "#{@gossip.user.first_name}", user_path(@gossip.user.id) %><br>
-		  			 	<%= link_to "#{@gossip.user.city.name}", city_path(@gossip.user.city) %> 
 
-		  			 </footer></blockquote> 
-		      	<button class=" btn btn-dark btn-lg" role="button" aria-pressed="true"><%=link_to 'Éditer le gossip ?', edit_gossip_path %> </button>	
-		      	
-		      	<a href="<%= gossip_path(@gossip.id)%>" class=" btn btn-danger btn-lg" role="button" aria-pressed="true" data-confirm="Êtes-vous sûr de supprimer le gossip ?" data-method ="DELETE"> Suprimer le gossip ? </a>
+		
+		
+		<%= form_tag url_for(action: 'update'), method: "put" do %>
 
-		    </div>
-    	</div>
+	      <%= label_tag 'Titre' %>
+	      <%= text_field_tag 'title', '', class: "form-control", placeholder: "#{@gossip.title}" %>
+	      <br/> <br/>
 
-	 
+	      <%= label_tag 'Gossip' %>
+	      <%= text_area_tag 'content', '', class: "form-control", placeholder: "#{@gossip.content}" %> 
+	      <br/> <br/>
+
+
+
+	      <%= submit_tag "Éditer mon post", class: "btn btn-dark" %>
+
+	    <% end %>
+		 
 
 
 	   
@@ -91,7 +97,7 @@
 	    </br>
 	    </br>
 	    </br>
-	    <a href="/">Retour sur l'accueil des gossips</a>
+	    <p> <%= link_to 'Retour sur l\'accueil des gossips', index_path %></p>
 
 	</div>
 

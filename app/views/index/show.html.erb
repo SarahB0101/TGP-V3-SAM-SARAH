@@ -37,7 +37,7 @@
 	</nav>
 
 
-	<!-------------------------- ERROR MESSAGE -------------------------->
+	<!-------------------------- SUCCESS MESSAGE -------------------------->
 
 
 
@@ -52,6 +52,17 @@
 
 
   
+	<!-------------------------- SUCCESS MESSAGE -------------------------->
+
+
+
+ 
+		<% if flash[:success1] %>
+			<div class="alert alert-success" role="alert">
+	 			<p>Votre gossip a bien été supprimé ! </p>
+
+		  	</div>
+		<% end %> 
 
 
 	<!-------------------------- CONTAINER -------------------------->
