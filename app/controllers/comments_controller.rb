@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
 		@gossip = Gossip.new(title: params[:title], content: params[:content], user: User.last)
 	# p = comment_params
  #    p[:user] = User.last
+
+ 	#comment_params[:user] = User.last
 	end
 
 	def edit

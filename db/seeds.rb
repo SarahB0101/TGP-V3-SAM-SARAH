@@ -27,13 +27,13 @@ end
 	JoinTableGossipTag.create(tag: Tag.all.sample, gossip: Gossip.all.sample)
 end
 
-# 20.times do
-# 	if rand(0..1) == 0
-# 		Comment.create(content: Faker::TvShows::RuPaul.quote , parent: Gossip.all.sample, user: User.all.sample)
-# 	else
-# 		Comment.create(content: Faker::TvShows::RuPaul.quote , parent: Comment.all.sample, user: User.all.sample)
-# 	end
-# end
+20.times do
+	
+		#Comment.create(content: Faker::TvShows::RuPaul.quote , parent: Gossip.all.sample, user: User.all.sample)
+	
+		Comment.create(content: Faker::TvShows::RuPaul.quote, gossip: Gossip.all.sample, user: User.all.sample)
+	
+end
 
 20.times do
 	if rand(0..1) == 0
