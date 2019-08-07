@@ -29,16 +29,15 @@ end
 
 20.times do
 	
-		#Comment.create(content: Faker::TvShows::RuPaul.quote , parent: Gossip.all.sample, user: User.all.sample)
 	
-		Comment.create(content: Faker::TvShows::RuPaul.quote, gossip: Gossip.all.sample, user: User.all.sample)
+		Comment.create(content: Faker::TvShows::RuPaul.quote, user: User.all.sample, gossip: Gossip.all.sample)
 	
 end
 
 20.times do
-	if rand(0..1) == 0
-		Like.create(user: User.all.sample, gossip: Comment.all.sample)
-	else
+	
+		Like.create(user: User.all.sample, gossip: Gossip.all.sample)
+
 		Like.create(user: User.all.sample, comment: Comment.all.sample)
-	end
+
 end

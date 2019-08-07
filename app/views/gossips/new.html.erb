@@ -84,8 +84,10 @@
 	      <%= text_area_tag 'content', '', class: "form-control", placeholder:"Gossip" %>
 	      <br/> <br/>
 
-
-
+	      <%= label_tag 'Tag' %>
+	      <%= select_tag 'title', options_from_collection_for_select(@tags , "id", "title") %>
+			<br/> 
+			<br/>
 	      <%= submit_tag "Créer mon post", class: "btn btn-dark" %>
 
 	    <% end %>
